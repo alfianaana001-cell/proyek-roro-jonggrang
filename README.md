@@ -1,4 +1,4 @@
-# 📝 Deadline Tracker
+# 📝 Proyek Roro Jonggrang
 
 Aplikasi berbasis web sederhana untuk mengelola dan melacak *deadline* tugas-tugas sekolah, organisasi, maupun kegiatan lainnya. Dibuat murni menggunakan HTML, CSS, dan JavaScript tanpa *framework* tambahan.
 
