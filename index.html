@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyek Roro Jonggrang</title>
+    
+    <!-- Link Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- KODE UNTUK FONT ORIGINAL SURFER -->
+    <!-- Link Google Font Original Surfer -->
     <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+    
+    <!-- MENGHUBUNGKAN KE FILE CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-tasks"></i>Proyek Roro Jonggrang</h1>
+            <h1><i class="fas fa-tasks"></i> Proyek Roro Jonggrang</h1>
             <button id="themeToggle" class="theme-btn"><i class="fas fa-moon"></i></button>
         </header>
 
@@ -20,7 +25,7 @@
             <form id="taskForm">
                 <div class="form-group">
                     <label for="taskName">Nama Tugas</label>
-                    <input type="text" id="taskName" placeholder="Contoh: Laporan Pertanggungjawaban..." required>
+                    <input type="text" id="taskName" placeholder="Contoh: Laporan Pertanggungjawaban... 😭" required>
                 </div>
                 
                 <div class="form-group-row">
@@ -29,10 +34,8 @@
                         <select id="taskCategory">
                             <option value="Tugas Sekolah">Tugas Sekolah</option>
                             <option value="OSIS Aksara Bosch">OSIS Aksara Bosch</option>
-                            <option value="Ekstra Kurikuler">Ekstra Kurikuler</option>
                             <option value="Lomba/Kompetisi">Lomba / Kompetisi</option>
                             <option value="Pribadi">Pribadi</option>
-                            <option value="Tujuan Hidup">Tujuan Hidup</option>
                         </select>
                     </div>
                     <div class="form-group w-50">
@@ -52,12 +55,24 @@
                 <button class="filter-btn" data-filter="pending">Belum Selesai</button>
                 <button class="filter-btn" data-filter="completed">Selesai</button>
             </div>
-            <div id="taskList" class="task-list">
-                <!-- Tugas akan muncul di sini dari JavaScript -->
-            </div>
+            <div id="taskList" class="task-list"></div>
         </section>
     </div>
 
+    <!-- KARAKTER PENDAMPING (INTERACTIVE PET) -->
+    <div class="mascot-container">
+        <div class="pet-body" id="petBody">
+            <div class="pet-eye left-eye">
+                <div class="pet-pupil"></div>
+            </div>
+            <div class="pet-eye right-eye">
+                <div class="pet-pupil"></div>
+            </div>
+        </div>
+        <div class="pet-shadow"></div>
+    </div>
+
+    <!-- MENGHUBUNGKAN KE FILE JAVASCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
