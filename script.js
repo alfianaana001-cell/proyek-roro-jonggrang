@@ -4,10 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const themeToggle = document.getElementById('themeToggle');
     
+    // Variabel Karakter Pet
+    const petBody = document.getElementById('petBody');
+    const pupils = document.querySelectorAll('.pet-pupil');
+    
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     let currentFilter = 'all';
 
-    // Theme setup
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
@@ -24,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     }
 
-    // Task Logic
     function saveTasks() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
@@ -38,7 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         });
 
-        // Urutkan berdasarkan deadline terdekat
+        if (filteredTasks.length === 0) {
+            taskList.innerHTML = `
+                <div class="empty-state">
+                    <div class="mascot">(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</div>
+                    <p>Alhamdulillah kosong! Wayahe rebahan, maraton anime, utawa maca novel sek rek! 🛌✨</p>
+                </div>
+            `;
+            return;
+        }
+
         filteredTasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
 
         filteredTasks.forEach(task => {
@@ -114,4 +125,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderTasks();
+
+    /* =========================================
+       LOGIKA KARAKTER INTERAKTIF (PET) 
+    ========================================= */
+
+    // Membuat mata pet mengikuti kursor
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        pupils.forEach(pupil => {
+            // Ambil elemen pembungkus mata untuk mencari titik tengah
+            const rect = pupil.parentElement.getBoundingClientRect();
+            const eyeCenterX = rect.left + rect.width / 2;
+            const eyeCenterY = rect.top + rect.height / 2;
+
+            // Hitung sudut (angle) arah kursor
+            const deltaX = mouseX - eyeCenterX;
+            const deltaY = mouseY - eyeCenterY;
+            const angle = Math.atan2(deltaY, deltaX);
+            
+            // Batasi pergerakan pupil agar tidak keluar dari area putih mata (maksimal 3px)
+            const maxDistance = 3;
+            // Kecepatan & jarak tarik mata
+            const distance = Math.min(maxDistance, Math.hypot(deltaX, deltaY) / 20);
+
+            // Hitung posisi x dan y yang baru
+            const pupilX = Math.cos(angle) * distance;
+            const pupilY = Math.sin(angle) * distance;
+
+            pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+        });
+    });
+
+    // Menambahkan reaksi jika pet diklik
+    if (petBody) {
+        petBody.addEventListener('click', () => {
+            petBody.classList.remove('jump-spin');
+            
+            // Trik untuk memicu ulang (re-trigger) animasi di CSS
+            void petBody.offsetWidth; 
+            
+            petBody.classList.add('jump-spin');
+        });
+    }
 });
