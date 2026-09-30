@@ -4,8 +4,11 @@
     --secondary-color: #e74c3c;
     --success-color: #2ecc71;
     
-    --bg-color: #f4f7f6;
+    /* Latar Belakang: Gradasi dari Putih ke Biru Muda */
+    --bg-color: linear-gradient(to bottom, #ffffff, #a3c4f3);
+    
     --card-bg: #ffffff;
+    --input-bg: #f8fafc; /* Warna solid untuk kolom ketik */
     --text-color: #333333;
     --border-color: #dddddd;
     
@@ -15,8 +18,12 @@
 [data-theme="dark"] {
     /* Biru Laut Terang untuk Mode Gelap */
     --primary-color: #3b82f6;
-    --bg-color: #121212;
+    
+    /* Latar Belakang Mode Gelap: Gradasi dari Abu-abu Gelap ke Navy/Biru Malam */
+    --bg-color: linear-gradient(to bottom, #121212, #0a192f);
+    
     --card-bg: #1e1e1e;
+    --input-bg: #2a2a2a;
     --text-color: #f4f4f4;
     --border-color: #333333;
 }
@@ -29,9 +36,10 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    /* Mengubah 'background-color' menjadi 'background' agar mendukung gradasi */
+    background: var(--bg-color);
+    background-attachment: fixed; /* Mencegah gradasi terpotong atau berulang saat layar di-scroll */
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
     font-size: 16px;
     position: relative;
     min-height: 100vh;
@@ -40,7 +48,7 @@ body {
 .container {
     max-width: 800px;
     margin: 2rem auto;
-    padding: 0 1rem 6rem 1rem; /* Tambah padding bawah agar tidak tertutup pet */
+    padding: 0 1rem 6rem 1rem; 
 }
 
 header {
@@ -73,7 +81,7 @@ header h1 {
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05); /* Memperhalus bayangan agar lebih elegan */
     margin-bottom: 2rem;
 }
 
@@ -102,7 +110,7 @@ input, select {
     padding: 0.8rem;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    background-color: var(--bg-color);
+    background-color: var(--input-bg); /* Menggunakan warna solid untuk input */
     color: var(--text-color);
     font-size: 1rem;
 }
@@ -166,11 +174,12 @@ input#taskName::placeholder {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-bottom: 1rem;
-    background: var(--bg-color);
-    transition: transform 0.2s;
+    background: var(--card-bg); /* Tetap solid agar teks mudah dibaca di atas gradasi */
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .task-card:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 .task-card.completed {
@@ -333,4 +342,3 @@ input#taskName::placeholder {
         right: 15px;
     }
 }
-
