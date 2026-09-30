@@ -4,11 +4,15 @@
     --secondary-color: #e74c3c;
     --success-color: #2ecc71;
     
-    /* Latar Belakang: Gradasi dari Putih ke Biru Muda */
-    --bg-color: linear-gradient(to bottom, #ffffff, #a3c4f3);
+    /* Gradasi: Putih di atas, lalu semakin ke bawah menjadi biru lembut */
+    --bg-color: linear-gradient(to bottom, #ffffff, #c3d6f0);
     
-    --card-bg: #ffffff;
-    --input-bg: #f8fafc; /* Warna solid untuk kolom ketik */
+    /* Warna latar kotak dibikin sedikit transparan (95%) agar gradasi menembus halus */
+    --card-bg: rgba(255, 255, 255, 0.95);
+    
+    /* Warna khusus untuk kolom input dan kartu tugas agar tetap solid dan jelas */
+    --item-bg: #ffffff;
+    
     --text-color: #333333;
     --border-color: #dddddd;
     
@@ -19,11 +23,12 @@
     /* Biru Laut Terang untuk Mode Gelap */
     --primary-color: #3b82f6;
     
-    /* Latar Belakang Mode Gelap: Gradasi dari Abu-abu Gelap ke Navy/Biru Malam */
-    --bg-color: linear-gradient(to bottom, #121212, #0a192f);
+    /* Gradasi Mode Gelap: Abu-abu Gelap di atas, ke Biru Navy Pekat di bawah */
+    --bg-color: linear-gradient(to bottom, #121212, #0a1930);
     
-    --card-bg: #1e1e1e;
-    --input-bg: #2a2a2a;
+    --card-bg: rgba(30, 30, 30, 0.95);
+    --item-bg: #1e1e1e;
+    
     --text-color: #f4f4f4;
     --border-color: #333333;
 }
@@ -36,9 +41,10 @@
 }
 
 body {
-    /* Mengubah 'background-color' menjadi 'background' agar mendukung gradasi */
+    /* MENGGUNAKAN 'BACKGROUND' BUKAN 'BACKGROUND-COLOR' UNTUK GRADASI */
     background: var(--bg-color);
-    background-attachment: fixed; /* Mencegah gradasi terpotong atau berulang saat layar di-scroll */
+    background-attachment: fixed; /* Penting! Agar gradasi tidak terputus/mengulang saat di-scroll */
+    
     color: var(--text-color);
     font-size: 16px;
     position: relative;
@@ -48,7 +54,7 @@ body {
 .container {
     max-width: 800px;
     margin: 2rem auto;
-    padding: 0 1rem 6rem 1rem; 
+    padding: 0 1rem 6rem 1rem;
 }
 
 header {
@@ -61,6 +67,8 @@ header {
 header h1 {
     font-family: var(--main-font);
     color: var(--primary-color);
+    /* Menambahkan sedikit bayangan teks agar lebih menonjol di atas gradasi */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
 }
 
 .theme-btn {
@@ -81,8 +89,9 @@ header h1 {
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.05); /* Memperhalus bayangan agar lebih elegan */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05); /* Memperhalus bayangan kotak */
     margin-bottom: 2rem;
+    backdrop-filter: blur(5px); /* Memberikan efek blur/kaca jika transparan */
 }
 
 .form-group {
@@ -110,7 +119,7 @@ input, select {
     padding: 0.8rem;
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    background-color: var(--input-bg); /* Menggunakan warna solid untuk input */
+    background-color: var(--item-bg); /* Memakai --item-bg agar gradasi tidak ikut masuk ke input */
     color: var(--text-color);
     font-size: 1rem;
 }
@@ -131,6 +140,7 @@ input#taskName::placeholder {
     cursor: pointer;
     margin-top: 1rem;
     transition: transform 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 .submit-btn:hover {
     opacity: 0.9;
@@ -174,17 +184,18 @@ input#taskName::placeholder {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-bottom: 1rem;
-    background: var(--card-bg); /* Tetap solid agar teks mudah dibaca di atas gradasi */
+    background: var(--item-bg); /* Menggunakan --item-bg yang solid */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .task-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .task-card.completed {
     opacity: 0.6;
     text-decoration: line-through;
+    background: rgba(0, 0, 0, 0.05); /* Sedikit gelap jika sudah selesai */
 }
 
 .task-info h3 {
@@ -262,7 +273,6 @@ input#taskName::placeholder {
     transition: background-color 0.3s;
 }
 
-/* Mata Pet */
 .pet-eye {
     position: absolute;
     top: 15px;
@@ -277,7 +287,6 @@ input#taskName::placeholder {
 .left-eye { left: 10px; }
 .right-eye { right: 10px; }
 
-/* Pupil Hitam yang akan bergerak */
 .pet-pupil {
     width: 5px;
     height: 5px;
@@ -286,7 +295,6 @@ input#taskName::placeholder {
     transition: transform 0.05s linear;
 }
 
-/* Bayangan Pet */
 .pet-shadow {
     width: 30px;
     height: 8px;
@@ -300,7 +308,6 @@ input#taskName::placeholder {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* Animasi Melayang Idle */
 @keyframes floatPet {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
@@ -310,7 +317,6 @@ input#taskName::placeholder {
     50% { transform: scale(0.7); opacity: 0.2; }
 }
 
-/* Animasi saat diklik */
 .pet-body.jump-spin {
     animation: jumpSpinAnim 0.6s ease;
 }
