@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyek Roro Jonggrang</title>
+    
+    <!-- Link Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link Google Font Original Surfer -->
     <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
+    
+    <!-- MENGHUBUNGKAN KE FILE CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,30 +59,22 @@
         </section>
     </div>
 
-    <!-- MASKOT KODOK YANG BISA DIGESER DAN EKSPRESIF -->
-    <div class="mascot-container" id="mascotContainer">
-        <div class="chat-bubble" id="chatBubble">Krok!</div>
+    <!-- KARAKTER PENDAMPING (MASKOT KODOK GARIN VTUBER) -->
+    <div class="mascot-container">
         
-        <div class="pet-body" id="petBody">
-            <!-- Tangan & Kaki -->
-            <div class="limb arm left-arm"></div>
-            <div class="limb arm right-arm"></div>
-            <div class="limb leg left-leg"></div>
-            <div class="limb leg right-leg"></div>
-            
-            <div class="pet-eye left-eye">
-                <div class="pet-pupil"></div>
-            </div>
-            <div class="pet-eye right-eye">
-                <div class="pet-pupil"></div>
-            </div>
-            <div class="pet-blush left-blush"></div>
-            <div class="pet-blush right-blush"></div>
-            <div class="pet-mouth"></div>
-        </div>
-        <div class="pet-shadow" id="petShadow"></div>
+        <!-- TIPS: Jika suatu saat kamu punya gambar chibi Garin.png yang ingin dipakai, 
+             hapus komentar kode <img> di bawah ini, dan hapus <div class="pet-body"> -->
+        <!-- <img src="garin.png" id="petBody" alt="Garin VTuber" style="width: 70px; cursor: pointer; animation: floatPet 3s ease-in-out infinite;"> -->
+
+       <!-- KARAKTER PENDAMPING (GARIN VTUBER ASLI) -->
+    <div class="mascot-container">
+        <!-- Ini adalah kode gambar yang sudah diaktifkan -->
+        <img src="garin.png" id="petBody" alt="Garin VTuber" style="width: 80px; cursor: pointer; animation: floatPet 3s ease-in-out infinite; z-index: 10;">
+        
+        <div class="pet-shadow"></div>
     </div>
 
+    <!-- MENGHUBUNGKAN KE FILE JAVASCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
