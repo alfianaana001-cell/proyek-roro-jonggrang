@@ -1,13 +1,13 @@
-/:root {
+:root {
     /* Biru Laut Dalam (Navy / Formal & Elegan) */
     --primary-color: #1e3a8a; 
     --secondary-color: #e74c3c;
     --success-color: #2ecc71;
     
-    /* Menggunakan gambar Adolo.jpg sebagai latar belakang utama */
-    --bg-image: url('Adolo.jpg');
+    /* Gradasi: Putih di atas, lalu semakin ke bawah menjadi biru lembut */
+    --bg-color: linear-gradient(to bottom, #ffffff, #c3d6f0);
     
-    --card-bg: rgba(255, 255, 255, 0.90); /* Sedikit lebih transparan agar gambar lebih terlihat */
+    --card-bg: rgba(255, 255, 255, 0.95);
     --item-bg: #ffffff;
     
     --text-color: #333333;
@@ -18,11 +18,8 @@
 
 [data-theme="dark"] {
     --primary-color: #3b82f6;
-    
-    /* Mode Gelap: Melapisi gambar Adolo.jpg dengan warna biru gelap transparan (85%) */
-    --bg-image: linear-gradient(rgba(10, 25, 48, 0.85), rgba(10, 25, 48, 0.85)), url('Adolo.jpg');
-    
-    --card-bg: rgba(30, 30, 30, 0.90);
+    --bg-color: linear-gradient(to bottom, #121212, #0a1930);
+    --card-bg: rgba(30, 30, 30, 0.95);
     --item-bg: #1e1e1e;
     --text-color: #f4f4f4;
     --border-color: #333333;
@@ -36,13 +33,8 @@
 }
 
 body {
-    /* Menerapkan gambar latar belakang */
-    background-image: var(--bg-image);
-    background-size: cover;          /* Memastikan gambar menutupi seluruh layar */
-    background-position: center;     /* Memposisikan gambar di tengah */
-    background-attachment: fixed;    /* Gambar tidak ikut bergeser saat di-scroll */
-    background-repeat: no-repeat;    /* Mencegah gambar berulang */
-    
+    background: var(--bg-color);
+    background-attachment: fixed; 
     color: var(--text-color);
     font-size: 16px;
     position: relative;
@@ -86,10 +78,9 @@ header h1 {
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
     margin-bottom: 2rem;
-    backdrop-filter: blur(8px); /* Efek kaca (blur) dinaikkan sedikit agar tulisan tetap terbaca jelas di atas gambar */
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
 }
 
 .form-group {
@@ -264,7 +255,7 @@ input#taskName::placeholder {
 .pet-body {
     width: 55px;
     height: 45px;
-    background-color: #68c96f; 
+    background-color: #68c96f; /* Warna Hijau Cerah */
     border-radius: 40% 40% 50% 50% / 50% 50% 40% 40%;
     position: relative;
     cursor: pointer;
@@ -273,6 +264,7 @@ input#taskName::placeholder {
     z-index: 10;
 }
 
+/* Mata kodok yang menonjol di atas kepala */
 .pet-eye {
     position: absolute;
     top: -12px;
@@ -289,6 +281,7 @@ input#taskName::placeholder {
 .left-eye { left: 2px; }
 .right-eye { right: 2px; }
 
+/* Pupil Hitam */
 .pet-pupil {
     width: 8px;
     height: 8px;
@@ -297,6 +290,7 @@ input#taskName::placeholder {
     transition: transform 0.05s linear;
 }
 
+/* Senyum Kodok */
 .pet-mouth {
     position: absolute;
     bottom: 10px;
@@ -308,6 +302,7 @@ input#taskName::placeholder {
     border-radius: 0 0 10px 10px;
 }
 
+/* Rona Pipi */
 .pet-blush {
     position: absolute;
     bottom: 12px;
@@ -319,6 +314,7 @@ input#taskName::placeholder {
 .left-blush { left: 5px; }
 .right-blush { right: 5px; }
 
+/* Bayangan Pet */
 .pet-shadow {
     width: 35px;
     height: 8px;
@@ -332,6 +328,7 @@ input#taskName::placeholder {
     background: rgba(255, 255, 255, 0.15);
 }
 
+/* Animasi Melayang */
 @keyframes floatPet {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
@@ -341,6 +338,7 @@ input#taskName::placeholder {
     50% { transform: scale(0.7); opacity: 0.2; }
 }
 
+/* Animasi saat diklik (Melompat & Muter) */
 .pet-body.jump-spin {
     animation: jumpSpinAnim 0.6s ease;
 }
