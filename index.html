@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyek Roro Jonggrang</title>
-    
-    <!-- Link Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Link Google Font Original Surfer -->
     <link href="https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap" rel="stylesheet">
-    
-    <!-- MENGHUBUNGKAN KE FILE CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,7 +30,6 @@
                             <option value="OSIS Aksara Bosch">OSIS Aksara Bosch</option>
                             <option value="Lomba/Kompetisi">Lomba / Kompetisi</option>
                             <option value="Pribadi">Pribadi</option>
-                            <option value="PIK-R Aetas Aurora">PIK-R Aetas Aurora</option>
                         </select>
                     </div>
                     <div class="form-group w-50">
@@ -60,20 +53,30 @@
         </section>
     </div>
 
-    <!-- KARAKTER PENDAMPING (INTERACTIVE PET) -->
-    <div class="mascot-container">
+    <!-- MASKOT KODOK YANG BISA DIGESER DAN EKSPRESIF -->
+    <div class="mascot-container" id="mascotContainer">
+        <div class="chat-bubble" id="chatBubble">Krok!</div>
+        
         <div class="pet-body" id="petBody">
+            <!-- Tangan & Kaki -->
+            <div class="limb arm left-arm"></div>
+            <div class="limb arm right-arm"></div>
+            <div class="limb leg left-leg"></div>
+            <div class="limb leg right-leg"></div>
+            
             <div class="pet-eye left-eye">
                 <div class="pet-pupil"></div>
             </div>
             <div class="pet-eye right-eye">
                 <div class="pet-pupil"></div>
             </div>
+            <div class="pet-blush left-blush"></div>
+            <div class="pet-blush right-blush"></div>
+            <div class="pet-mouth"></div>
         </div>
-        <div class="pet-shadow"></div>
+        <div class="pet-shadow" id="petShadow"></div>
     </div>
 
-    <!-- MENGHUBUNGKAN KE FILE JAVASCRIPT -->
     <script src="script.js"></script>
 </body>
 </html>
